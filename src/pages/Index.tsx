@@ -1,49 +1,15 @@
-import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionTitle from "@/components/SectionTitle";
 import ContactForm from "@/components/ContactForm";
 import WorldMap from "@/components/WorldMap";
 import PartnersGrid from "@/components/PartnersGrid";
-import MedexLogo from "@/components/MedexLogo";
+import HeroSection from "@/components/HeroSection";
 
 const Index = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative mx-4 sm:mx-8 lg:mx-12 mt-4 rounded-2xl overflow-hidden bg-muted min-h-[400px] lg:min-h-[500px] flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 to-transparent z-10" />
-        {/* Decorative implant shapes */}
-        <div className="absolute right-0 top-0 bottom-0 w-1/2 flex items-end justify-center gap-4 opacity-20">
-          {[1,2,3,4,5].map(i => (
-            <div key={i} className="w-16 bg-muted-foreground/30 rounded-t-full" style={{ height: `${120 + i * 40}px` }} />
-          ))}
-        </div>
-        <div className="relative z-20 container py-16">
-          <div className="max-w-lg">
-            <MedexLogo className="h-12 mb-6" />
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight mb-6">
-              Medex offers the latest technologies and medical products for dental implants
-            </h1>
-            <div className="flex gap-3">
-              <Button className="rounded-full gap-2">
-                Download App <Play className="h-3.5 w-3.5 fill-current" />
-              </Button>
-              <Button variant="outline" className="rounded-full">
-                Learn More
-              </Button>
-            </div>
-          </div>
-        </div>
-        {/* Slider arrows */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-          <button className="w-10 h-10 rounded-full border bg-background flex items-center justify-center hover:bg-secondary transition-colors">
-            <ArrowLeft className="h-4 w-4" />
-          </button>
-          <button className="w-10 h-10 rounded-full border bg-background flex items-center justify-center hover:bg-secondary transition-colors">
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* About Preview */}
       <section className="py-20 container">

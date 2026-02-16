@@ -19,14 +19,14 @@ const Navbar = () => {
   const { pathname } = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border/50">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex-shrink-0">
-          <MedexLogo className="h-10" />
+          <MedexLogo className="h-8" />
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-6">
+        {/* Desktop nav - centered */}
+        <nav className="hidden lg:flex items-center gap-7">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -41,13 +41,13 @@ const Navbar = () => {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <Button className="rounded-full gap-2 px-5">
+          <Button className="rounded-full gap-2 px-5 h-9 text-sm">
             Download App
-            <Play className="h-3.5 w-3.5 fill-current" />
-            <Apple className="h-3.5 w-3.5" />
+            <Play className="h-3 w-3 fill-current" />
+            <Apple className="h-3 w-3" />
           </Button>
-          <button className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-secondary transition-colors">
-            <Globe className="h-5 w-5 text-primary" />
+          <button className="w-9 h-9 rounded-full border border-primary text-primary flex items-center justify-center hover:bg-primary/5 transition-colors">
+            <Globe className="h-4 w-4" />
           </button>
         </div>
 
