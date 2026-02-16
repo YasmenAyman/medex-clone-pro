@@ -4,6 +4,9 @@ import ContactForm from "@/components/ContactForm";
 import WorldMap from "@/components/WorldMap";
 import PartnersGrid from "@/components/PartnersGrid";
 import HeroSection from "@/components/HeroSection";
+import teamPhoto from "@/assets/team-photo.png";
+import dentalImplant from "@/assets/dental-implant.png";
+import toothVideo from "@/assets/tooth-video.mp4";
 
 const Index = () => {
   return (
@@ -11,58 +14,104 @@ const Index = () => {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* About Preview */}
-      <section className="py-20 container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="rounded-2xl bg-muted h-[300px] lg:h-[400px] overflow-hidden flex items-end justify-center">
-            {/* Team photo placeholder */}
-            <div className="flex gap-2 h-[80%]">
-              {[1,2,3,4].map(i => (
-                <div key={i} className="w-24 bg-muted-foreground/20 rounded-t-lg" />
-              ))}
-            </div>
+      {/* Team Photo */}
+      <section className="container mt-0">
+        <div className="rounded-2xl overflow-hidden">
+          <img src={teamPhoto} alt="Medex Team" className="w-full h-[300px] lg:h-[450px] object-cover object-top" />
+        </div>
+      </section>
+
+      {/* Who Medex Is + Vision */}
+      <section className="py-16 container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Tooth 3D video */}
+          <div className="flex items-center justify-center">
+            <video
+              src={toothVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-[280px] lg:w-[320px] h-auto"
+            />
           </div>
+          {/* Text content */}
           <div>
-            <SectionTitle title="About us" />
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              We are a leading distributor of medical supplies and dental implants in the Middle East. We provide the latest global technologies for medical centers and dental clinics, with a commitment to quality and excellence.
+            <h3 className="text-xl font-bold text-foreground mb-1">
+              Who <span className="text-primary">Medex</span> is?
+            </h3>
+            <p className="text-muted-foreground leading-relaxed mb-6 text-sm">
+              Medex Company is a leading company in the field of distributing medical supplies
+              and dental implants in the Middle East. It was established with the aim of providing
+              the latest international technologies to medical centers and dental clinics.
             </p>
-            <h3 className="text-primary font-semibold text-lg mb-2">Our vision</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              To be the ideal partner for medical institutions in the field of dental implants and specialized medical equipment, by providing integrated solutions of international quality.
+            <h3 className="text-lg font-bold text-foreground mb-2">Our vision</h3>
+            <p className="text-muted-foreground leading-relaxed text-sm">
+              To be the ideal partner for medical institutions in the field of dental implants and
+              specialized medical equipment, by providing integrated solutions of international
+              quality.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Our Values */}
-      <section className="py-20 bg-secondary">
+      {/* Our Values - Circular design */}
+      <section className="py-20 bg-background">
         <div className="container">
-          <div className="text-center mb-12">
-            <div className="relative inline-block">
-              <div className="w-48 h-48 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                <div className="text-center">
-                  <h2 className="text-3xl font-bold text-primary">Our</h2>
-                  <h2 className="text-3xl font-bold text-primary">values</h2>
-                </div>
+          <div className="relative flex flex-col items-center">
+            {/* Concentric circles */}
+            <div className="relative w-[320px] h-[320px] sm:w-[450px] sm:h-[450px] lg:w-[600px] lg:h-[600px]">
+              {/* Outer ring */}
+              <div className="absolute inset-0 rounded-full border border-primary/10" />
+              {/* Middle ring */}
+              <div className="absolute inset-[10%] rounded-full border border-primary/15" />
+              {/* Inner ring */}
+              <div className="absolute inset-[20%] rounded-full border border-primary/20" />
+              {/* Red filled circle */}
+              <div className="absolute inset-[28%] rounded-full bg-primary/80" />
+
+              {/* Dental implant image */}
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <img
+                  src={dentalImplant}
+                  alt="Dental Implant"
+                  className="w-[160px] sm:w-[220px] lg:w-[300px] h-auto object-contain -mt-8"
+                />
+              </div>
+
+              {/* "Our values" text */}
+              <div className="absolute bottom-[18%] left-1/2 -translate-x-1/2 z-10 text-center">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-foreground leading-tight">
+                  Our<br />values
+                </h2>
+              </div>
+
+              {/* Value labels positioned around the circle */}
+              {/* Top-right */}
+              <div className="absolute -top-4 right-0 lg:-right-16 max-w-[180px] text-right">
+                <p className="text-xs sm:text-sm text-muted-foreground italic leading-snug">
+                  Supporting the continuing professional development of medical personnel
+                </p>
+              </div>
+              {/* Top-left */}
+              <div className="absolute top-[20%] -left-4 lg:-left-20 max-w-[180px] text-left">
+                <p className="text-xs sm:text-sm text-muted-foreground italic leading-snug">
+                  Honesty and transparency in all our dealings
+                </p>
+              </div>
+              {/* Bottom-left */}
+              <div className="absolute bottom-[5%] -left-4 lg:-left-20 max-w-[180px] text-left">
+                <p className="text-xs sm:text-sm text-muted-foreground italic leading-snug">
+                  Continuous innovation in providing medical solutions
+                </p>
+              </div>
+              {/* Bottom-right */}
+              <div className="absolute bottom-[5%] right-0 lg:-right-16 max-w-[180px] text-right">
+                <p className="text-xs sm:text-sm text-muted-foreground italic leading-snug">
+                  Commitment to the highest international quality standards
+                </p>
               </div>
             </div>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              "Supporting the continuing professional development of medical personnel",
-              "Commitment to the highest international quality standards",
-              "Honesty and transparency in all our dealings",
-              "Continuous innovation in providing medical solutions",
-            ].map((val, i) => (
-              <div key={i} className="bg-card rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold mb-4">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <div className="w-full h-24 rounded-xl bg-muted mb-4" />
-                <p className="text-sm text-muted-foreground leading-relaxed">{val}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
