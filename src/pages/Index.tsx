@@ -10,6 +10,7 @@ import toothVideo from "@/assets/tooth-video.mp4";
 import serviceStore from "@/assets/service-store.jpg";
 import serviceAcademy from "@/assets/service-academy.jpg";
 import serviceDental from "@/assets/service-dental.jpg";
+import productsHero from "@/assets/products-hero.jpg";
 
 const Index = () => {
   return (
@@ -192,7 +193,65 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Medex Academy */}
+      {/* Products Section */}
+      <section className="py-20">
+        <div className="container">
+          {/* Header */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-10">
+            <div>
+              <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
+                Medex
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
+                Our medical products<br />are suit everyone
+              </h2>
+            </div>
+            <p className="text-muted-foreground mt-4 lg:mt-8 max-w-xs text-sm leading-relaxed">
+              A wide range of high-quality medical products are suit everyone
+            </p>
+          </div>
+
+          {/* Product Categories */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            {[
+              {
+                title: "Advanced dental implants",
+                desc: "Made from high quality titanium to ensure the highest success rates and longevity",
+                active: true,
+              },
+              {
+                title: "CAD/CAM systems",
+                desc: "Advanced digital technologies for designing and manufacturing dental implants with high accuracy",
+                active: false,
+              },
+              {
+                title: "Specialized laser devices",
+                desc: "Specialized laser devices for delicate treatments and cosmetic procedures. Advanced",
+                active: false,
+              },
+              {
+                title: "Advanced filling materials",
+                desc: "Specialized laser devices for delicate treatments and cosmetic procedures. Advanced",
+                active: false,
+              },
+            ].map((p, i) => (
+              <div key={i} className="flex flex-col">
+                <div className={`flex items-center gap-2 mb-3 px-3 py-2 rounded-full text-sm font-medium ${p.active ? "bg-primary text-primary-foreground" : "text-foreground"}`}>
+                  {p.active && <span className="w-2 h-2 rounded-full bg-primary-foreground" />}
+                  {p.title}
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Product Image */}
+          <div className="rounded-2xl overflow-hidden">
+            <img src={productsHero} alt="Dental products" className="w-full h-[300px] lg:h-[450px] object-cover" />
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 bg-secondary">
         <div className="container">
           <SectionTitle title="Medex Academy" subtitle="Professional courses and training for medical professionals." />
