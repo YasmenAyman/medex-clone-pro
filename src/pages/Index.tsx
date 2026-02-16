@@ -7,6 +7,9 @@ import HeroSection from "@/components/HeroSection";
 import teamPhoto from "@/assets/team-photo.png";
 import dentalImplant from "@/assets/dental-implant.png";
 import toothVideo from "@/assets/tooth-video.mp4";
+import serviceStore from "@/assets/service-store.jpg";
+import serviceAcademy from "@/assets/service-academy.jpg";
+import serviceDental from "@/assets/service-dental.jpg";
 
 const Index = () => {
   return (
@@ -117,27 +120,75 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 container">
-        <SectionTitle
-          title="Explore our services and ..."
-          subtitle="We provide comprehensive medical solutions for dental clinics and medical centers."
-        />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[
-            { title: "Our services", desc: "Comprehensive dental solutions" },
-            { title: "Our services", desc: "Advanced medical equipment" },
-          ].map((s, i) => (
-            <div key={i} className="rounded-2xl overflow-hidden bg-muted h-[300px] relative group">
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
-              <div className="absolute bottom-6 left-6 text-primary-foreground">
-                <p className="text-xs uppercase tracking-wider mb-1 text-primary">Medex</p>
-                <h3 className="text-xl font-bold">{s.title}</h3>
-              </div>
-              <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                <div className="w-3 h-3 border-t-2 border-r-2 border-primary-foreground rotate-45 -ml-1" />
-              </div>
+      <section className="py-20 bg-secondary/50">
+        <div className="container">
+          {/* Header */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-12">
+            <div>
+              <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
+                Medex
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
+                Explore our<br />different services
+              </h2>
             </div>
-          ))}
+            <p className="text-muted-foreground mt-4 lg:mt-8 max-w-sm text-sm leading-relaxed">
+              We offer you a comprehensive package of specialized medical services and products
+            </p>
+          </div>
+
+          {/* Service Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            {[
+              {
+                num: "01",
+                title: "Medix Store",
+                desc: "Shop online from a wide variety of dental products and medical supplies from the most famous international brands",
+                img: serviceStore,
+              },
+              {
+                num: "02",
+                title: "Scientific Academy",
+                desc: "Specialized training courses and workshops in the fields of dental implants and cosmetics provided by a group of international experts",
+                img: serviceAcademy,
+              },
+              {
+                num: "03",
+                title: "Dental products",
+                desc: "Dental implants, cosmetic materials, and the latest cosmetic and restorative dentistry technologies from prestigious international companies",
+                img: serviceDental,
+              },
+            ].map((s, i) => (
+              <div key={i} className="bg-card rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div className="relative mb-4">
+                  <span className="absolute top-3 left-3 z-10 bg-primary text-primary-foreground text-xs font-bold w-8 h-8 rounded-full flex items-center justify-center">
+                    {s.num}
+                  </span>
+                  <img src={s.img} alt={s.title} className="w-full h-[180px] object-cover rounded-xl" />
+                </div>
+                <h3 className="font-bold text-foreground mb-2">{s.title}</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom stats */}
+          <div className="flex flex-wrap items-center gap-8 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <span className="text-primary text-lg">★</span>
+              <span>4.9 on Google reviews</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center">
+                <span className="w-2 h-2 rounded-full bg-primary" />
+              </span>
+              <span>400+ Happy clients</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-primary text-lg">♥</span>
+              <span>Safe & Certified care</span>
+            </div>
+          </div>
         </div>
       </section>
 
