@@ -26,7 +26,7 @@ const Index = () => {
       <HeroSection />
 
       {/* Team Photo */}
-      <section className="container mt-0">
+      <section className="container mt-20">
         <div className="rounded-2xl overflow-hidden">
           <img src={teamPhoto} alt="Medex Team" className="w-full h-[300px] lg:h-[450px] object-cover object-top" />
         </div>
@@ -383,7 +383,7 @@ const Index = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
                       <div className="flex -space-x-2">
-                        {[0,1,2].map(a => (
+                        {[0, 1, 2].map(a => (
                           <div key={a} className="w-7 h-7 rounded-full bg-muted border-2 border-card" />
                         ))}
                       </div>
