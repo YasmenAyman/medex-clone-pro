@@ -5,6 +5,9 @@ import WorldMap from "@/components/WorldMap";
 import PartnersGrid from "@/components/PartnersGrid";
 import HeroSection from "@/components/HeroSection";
 import teamPhoto from "@/assets/team-photo.png";
+import academyCourse1 from "@/assets/academy-course1.jpg";
+import academyCourse2 from "@/assets/academy-course2.jpg";
+import academyCourse3 from "@/assets/academy-course3.jpg";
 import dentalImplant from "@/assets/dental-implant.png";
 import toothVideo from "@/assets/tooth-video.mp4";
 import serviceStore from "@/assets/service-store.jpg";
@@ -315,28 +318,101 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-secondary">
+      <section className="py-20 bg-secondary/50">
         <div className="container">
-          <SectionTitle title="Medex Academy" subtitle="Professional courses and training for medical professionals." />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <div className="h-40 bg-muted" />
-                <div className="p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-6 h-6 rounded-full bg-muted" />
-                    <span className="text-xs text-muted-foreground">Dr. Instructor</span>
+          {/* Header */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-12">
+            <div>
+              <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
+                Medex
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
+                Medex Academy
+              </h2>
+            </div>
+            <p className="text-muted-foreground mt-4 lg:mt-8 max-w-sm text-sm leading-relaxed">
+              Specialized training programs offered by a select group of international experts in the field of dental implants and cosmetic dentistry.
+            </p>
+          </div>
+
+          {/* Course Cards - Horizontal scroll */}
+          <div className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide">
+            {[
+              {
+                img: academyCourse1,
+                badge: "Accredited Certificate",
+                date: "August 5-7, 2023",
+                title: "Advanced course in dental implants",
+                desc: "A specialized practical course in the latest dental implant techniques and integrated solutions.",
+              },
+              {
+                img: academyCourse2,
+                badge: "Scientific conference",
+                date: "August 5-7, 2023",
+                title: "Advanced cosmetic and smile techniques",
+                desc: "The latest methods and techniques in cosmetic dentistry and designing the perfect smile.",
+              },
+              {
+                img: academyCourse3,
+                badge: "Workshop",
+                date: "August 5-7, 2023",
+                title: "Digital dentistry masterclass",
+                desc: "Practical training on digital scanning, CAD/CAM and modern dental technologies.",
+              },
+            ].map((course, i) => (
+              <div key={i} className="bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow min-w-[340px] sm:min-w-[380px] flex-shrink-0 snap-start">
+                <img src={course.img} alt={course.title} className="w-full h-[200px] object-cover" />
+                <div className="p-5">
+                  {/* Badge & date */}
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="flex items-center gap-1.5 text-primary text-xs font-medium">
+                      <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      </span>
+                      {course.badge}
+                    </span>
+                    <span className="text-primary text-xs font-medium">{course.date}</span>
                   </div>
-                  <h4 className="font-semibold text-sm mb-2">Advanced Dental Course {i}</h4>
+                  <h4 className="font-bold text-foreground mb-2">{course.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed mb-4">{course.desc}</p>
+                  {/* Avatars + View course */}
                   <div className="flex items-center justify-between">
-                    <span className="text-primary font-bold text-sm">$99</span>
-                    <Button size="sm" variant="outline" className="rounded-full text-xs h-7">
-                      Enroll
+                    <div className="flex items-center">
+                      <div className="flex -space-x-2">
+                        {[0,1,2].map(a => (
+                          <div key={a} className="w-7 h-7 rounded-full bg-muted border-2 border-card" />
+                        ))}
+                      </div>
+                      <span className="ml-1 text-[10px] bg-primary text-primary-foreground rounded-full px-1.5 py-0.5 font-bold">+100</span>
+                    </div>
+                    <Button size="sm" variant="outline" className="rounded-full text-xs h-8 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                      View course
                     </Button>
                   </div>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Navigation & View all */}
+          <div className="flex items-center justify-between mt-8">
+            <div className="flex items-center gap-2">
+              <button className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors">
+                ‹
+              </button>
+              <button className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors">
+                ›
+              </button>
+            </div>
+            {/* Progress dots */}
+            <div className="flex items-center gap-1.5">
+              <div className="w-8 h-1 rounded-full bg-primary" />
+              <div className="w-2 h-1 rounded-full bg-border" />
+              <div className="w-2 h-1 rounded-full bg-border" />
+            </div>
+            <a href="#" className="text-primary text-sm font-medium underline underline-offset-4 hover:no-underline">
+              View all courses
+            </a>
           </div>
         </div>
       </section>
