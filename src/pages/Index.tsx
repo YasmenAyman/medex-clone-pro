@@ -15,6 +15,9 @@ import serviceAcademy from "@/assets/service-academy.jpg";
 import serviceDental from "@/assets/service-dental.jpg";
 import productsHero from "@/assets/products-hero.jpg";
 import medexBox from "@/assets/medex-box.png";
+import news1 from "@/assets/news1.jpg";
+import news2 from "@/assets/news2.jpg";
+import news3 from "@/assets/news3.jpg";
 
 const Index = () => {
   return (
@@ -484,6 +487,68 @@ const Index = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* News and Events */}
+      <section className="py-20 bg-secondary/30">
+        <div className="container">
+          {/* Header */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-12">
+            <div>
+              <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
+                Medex
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
+                News and events
+              </h2>
+            </div>
+            <p className="text-muted-foreground mt-4 lg:mt-8 max-w-sm text-sm leading-relaxed">
+              Latest news and events related to Medix and its activities
+            </p>
+          </div>
+
+          {/* News Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            {[
+              { img: news1, title: "Medex sponsors the scientific conference on dental implants", desc: "Medix participated as a platinum sponsor in the International Dental Implant Conference held in Dubai last week." },
+              { img: news2, title: "Medex sponsors the scientific conference on dental implants", desc: "Medix participated as a platinum sponsor in the International Dental Implant Conference held in Dubai last week." },
+              { img: news3, title: "Medex sponsors the scientific conference on dental implants", desc: "Medix participated as a platinum sponsor in the International Dental Implant Conference held in Dubai last week." },
+            ].map((news, i) => (
+              <div key={i} className="bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <img src={news.img} alt={news.title} className="w-full h-[200px] object-cover" />
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-primary text-xs font-medium">News</span>
+                    <span className="text-primary text-xs font-medium">August 5-7, 2023</span>
+                  </div>
+                  <h4 className="font-bold text-foreground text-sm mb-2">{news.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed mb-4">{news.desc}</p>
+                  <a href="#" className="text-primary text-xs font-medium hover:underline">Read More...</a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Navigation & View all */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <button className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors">
+                ‹
+              </button>
+              <button className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors">
+                ›
+              </button>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-8 h-1 rounded-full bg-primary" />
+              <div className="w-2 h-1 rounded-full bg-border" />
+              <div className="w-2 h-1 rounded-full bg-border" />
+            </div>
+            <a href="#" className="text-primary text-sm font-medium hover:underline">
+              View all news and events
+            </a>
           </div>
         </div>
       </section>
