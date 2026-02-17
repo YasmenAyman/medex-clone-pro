@@ -193,6 +193,69 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Our Services Section - Zigzag cards */}
+      <section className="py-20 bg-background relative overflow-hidden">
+        <div className="container">
+          {/* Header */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-16">
+            <div>
+              <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
+                Medex
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
+                Our services
+              </h2>
+            </div>
+            <p className="text-muted-foreground mt-4 lg:mt-8 max-w-xs text-sm leading-relaxed">
+              We offer a comprehensive range of specialized services for clinics and medical centers.
+            </p>
+          </div>
+
+          {/* Zigzag Service Cards */}
+          <div className="relative max-w-4xl mx-auto">
+            {/* Dashed connecting line (desktop only) */}
+            <svg className="absolute inset-0 w-full h-full hidden lg:block pointer-events-none z-0" preserveAspectRatio="none" viewBox="0 0 800 1200">
+              <path
+                d="M 200 60 C 350 100, 450 150, 550 200 C 400 280, 300 320, 200 400 C 350 480, 450 500, 550 540 C 400 620, 300 660, 200 720 C 350 800, 450 840, 550 900"
+                fill="none"
+                stroke="hsl(0 0% 85%)"
+                strokeWidth="1.5"
+                strokeDasharray="8 6"
+              />
+            </svg>
+
+            {/* Cards */}
+            <div className="relative z-10 space-y-8 lg:space-y-10">
+              {[
+                { title: "Supply and distribution", desc: "Supply and distribution services for medical equipment, dental materials, and all medical products with speed and high efficiency.", icon: "📦", align: "left" as const },
+                { title: "Maintenance and Technical Support", desc: "Regular and emergency maintenance services for all types of medical equipment and dental devices, with the provision of original spare parts, repair...", icon: "🔧", align: "right" as const },
+                { title: "Clinic equipment", desc: "Design and equipping services for dental clinics and medical centers with the latest technologies and design of medical environments.", icon: "🏥", align: "left" as const },
+                { title: "Training and qualification", desc: "Training courses and workshops for dentists on the latest treatment technologies, equipment and the use of modern medical devices.", icon: "🎓", align: "right" as const },
+                { title: "Technical consultations", desc: "Expert technical consulting services in the field of dental materials, equipment selection and selection of appropriate materials.", icon: "💡", align: "left" as const },
+                { title: "Guarantee programs", desc: "Inclusive warranty programs for equipment and medical devices to ensure continuity.", icon: "🛡️", align: "right" as const },
+              ].map((service, i) => (
+                <div key={i} className={`flex ${service.align === "right" ? "lg:justify-end justify-start" : "justify-start"}`}>
+                  <div className="relative w-full max-w-[280px] sm:max-w-[300px]">
+                    {/* Red pushpin */}
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 w-8 h-8 rounded-full bg-primary shadow-md flex items-center justify-center">
+                      <div className="w-2.5 h-2.5 rounded-full bg-primary-foreground" />
+                    </div>
+                    {/* Card */}
+                    <div className="bg-primary/5 rounded-2xl p-5 pt-7 border border-primary/10">
+                      <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                        <span className="text-sm">{service.icon}</span>
+                      </div>
+                      <h3 className="font-bold text-foreground text-sm mb-2">{service.title}</h3>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{service.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Products Section */}
       <section className="py-20">
         <div className="container">
