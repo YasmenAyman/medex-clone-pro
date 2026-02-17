@@ -14,6 +14,7 @@ import serviceStore from "@/assets/service-store.jpg";
 import serviceAcademy from "@/assets/service-academy.jpg";
 import serviceDental from "@/assets/service-dental.jpg";
 import productsHero from "@/assets/products-hero.jpg";
+import medexBox from "@/assets/medex-box.png";
 
 const Index = () => {
   return (
@@ -418,28 +419,72 @@ const Index = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 container">
-        <SectionTitle title="Testimonials" className="text-center" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-card rounded-2xl p-6 shadow-sm border">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-muted" />
+      <section className="py-20">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left side */}
+            <div>
+              <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
+                Medex
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                Testimonials
+              </h2>
+              <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mb-8">
+                What doctors and specialists say about their experience with Medix products and services
+              </p>
+              <div className="flex items-center gap-6">
                 <div>
-                  <p className="font-semibold text-sm">Dr. Ahmed</p>
-                  <p className="text-xs text-muted-foreground">Dental Surgeon</p>
+                  <p className="font-bold text-foreground text-sm mb-2">Trusted Partners</p>
+                  <div className="flex -space-x-2">
+                    {[0, 1, 2, 3].map((a) => (
+                      <div key={a} className="w-8 h-8 rounded-full bg-muted border-2 border-background" />
+                    ))}
+                  </div>
+                </div>
+                <div className="w-px h-10 bg-border" />
+                <div>
+                  <p className="font-bold text-foreground text-sm mb-2">Rated Excellent: 5 / 5</p>
+                  <div className="flex gap-0.5">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <span key={s} className="text-amber-400 text-sm">★</span>
+                    ))}
+                  </div>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                "Medex provides excellent quality dental implants and equipment. Their customer service is outstanding and delivery is always on time."
-              </p>
-              <div className="flex gap-1 mt-3">
-                {[1,2,3,4,5].map(s => (
-                  <span key={s} className="text-primary text-sm">★</span>
-                ))}
-              </div>
             </div>
-          ))}
+
+            {/* Right side - Box with floating cards */}
+            <div className="relative flex justify-center">
+              <img src={medexBox} alt="Medex Box" className="w-[380px] lg:w-[450px] h-auto mt-24" />
+              {/* Floating testimonial cards */}
+              {[
+                { top: "-top-4 right-0 lg:right-4", delay: "" },
+                { top: "top-20 -right-4 lg:right-0", delay: "" },
+                { top: "top-44 right-8 lg:right-12", delay: "" },
+              ].map((pos, i) => (
+                <div key={i} className={`absolute ${pos.top} bg-card rounded-xl p-4 shadow-lg border max-w-[280px] z-10`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-muted" />
+                      <div>
+                        <p className="font-semibold text-xs">Dr. Muhammad Al-Ahmad</p>
+                        <p className="text-[10px] text-muted-foreground">Consultant in Oral and Dental Surgery</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-0.5">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <span key={s} className="text-amber-400 text-[10px]">★</span>
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground leading-relaxed">
+                    "I have been dealing with Medex for over 10 years, and I have complete confidence in the quality of their products and services"
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
