@@ -1,41 +1,38 @@
+import worldMap from "@/assets/world-map.png";
+
 const dots = [
-  { x: 25, y: 25 }, { x: 35, y: 18 }, { x: 30, y: 55 },
-  { x: 45, y: 15 }, { x: 50, y: 30 }, { x: 55, y: 45 },
-  { x: 60, y: 25 }, { x: 65, y: 35 }, { x: 70, y: 20 },
-  { x: 72, y: 40 }, { x: 75, y: 30 }, { x: 78, y: 55 },
-  { x: 80, y: 25 }, { x: 82, y: 45 }, { x: 85, y: 60 },
-  { x: 55, y: 55 }, { x: 48, y: 50 },
+  { x: 5, y: 42 },   // South America
+  { x: 18, y: 28 },  // North America west
+  { x: 25, y: 15 },  // North America north
+  { x: 22, y: 62 },  // South America south
+  { x: 30, y: 12 },  // Canada
+  { x: 38, y: 38 },  // Africa west
+  { x: 48, y: 42 },  // Africa central
+  { x: 50, y: 55 },  // Africa south
+  { x: 55, y: 28 },  // Middle East
+  { x: 58, y: 32 },  // India region
+  { x: 65, y: 22 },  // East Asia
+  { x: 70, y: 18 },  // Japan/Korea
+  { x: 72, y: 32 },  // Southeast Asia
+  { x: 82, y: 58 },  // Australia
+  { x: 15, y: 78 },  // Antarctica region
 ];
 
 const WorldMap = () => (
-  <div className="relative w-full h-full min-h-[300px]">
-    <svg viewBox="0 0 100 70" className="w-full h-full opacity-20">
-      {/* Simplified world map dots pattern */}
-      {Array.from({ length: 50 }).map((_, row) =>
-        Array.from({ length: 80 }).map((_, col) => {
-          const x = col * 1.25 + 1;
-          const y = row * 1.4 + 1;
-          // Create rough continent shapes
-          const isLand =
-            (x > 15 && x < 35 && y > 10 && y < 50) || // Americas
-            (x > 38 && x < 58 && y > 10 && y < 45) || // Europe/Africa
-            (x > 55 && x < 85 && y > 10 && y < 55) || // Asia
-            (x > 75 && x < 95 && y > 50 && y < 65);   // Australia
-          if (!isLand || Math.random() > 0.4) return null;
-          return (
-            <circle key={`${row}-${col}`} cx={x} cy={y} r="0.3" fill="hsl(var(--muted-foreground))" />
-          );
-        })
-      )}
-    </svg>
-    {/* Red location dots */}
-    {dots.map((d, i) => (
-      <div
-        key={i}
-        className="absolute w-2 h-2 rounded-full bg-primary"
-        style={{ left: `${d.x}%`, top: `${d.y}%` }}
-      />
-    ))}
+  <div className="relative w-full flex flex-col items-end">
+    <p className="text-muted-foreground text-sm mb-6 max-w-[300px] text-right">
+      We are here to answer your questions and provide the necessary assistance.
+    </p>
+    <div className="relative w-full">
+      <img src={worldMap} alt="World map" className="w-full opacity-90" />
+      {dots.map((d, i) => (
+        <div
+          key={i}
+          className="absolute w-2.5 h-2.5 rounded-full bg-primary"
+          style={{ left: `${d.x}%`, top: `${d.y}%`, transform: "translate(-50%, -50%)" }}
+        />
+      ))}
+    </div>
   </div>
 );
 

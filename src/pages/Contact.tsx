@@ -8,16 +8,14 @@ const Contact = () => (
 
     <section className="py-16 container">
       <div className="bg-card rounded-2xl shadow-sm p-8 lg:p-12 border">
-        <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
-          Medex
-        </span>
-        <h2 className="text-2xl font-bold mb-2">Join to Our Community</h2>
-        <p className="text-muted-foreground text-sm mb-8">
-          We are here to answer your questions and provide the necessary assistance.
-        </p>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <ContactForm />
+          <div>
+            <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
+              Medex
+            </span>
+            <h2 className="text-2xl font-bold mb-8">Join to Our Community</h2>
+            <ContactForm />
+          </div>
           <WorldMap />
         </div>
       </div>
