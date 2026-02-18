@@ -1,9 +1,13 @@
+import { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import SectionTitle from "@/components/SectionTitle";
 import ContactForm from "@/components/ContactForm";
 import WorldMap from "@/components/WorldMap";
 import PartnersGrid from "@/components/PartnersGrid";
 import HeroSection from "@/components/HeroSection";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import teamPhoto from "@/assets/team-photo.png";
 import academyCourse1 from "@/assets/academy-course1.jpg";
 import academyCourse2 from "@/assets/academy-course2.jpg";
@@ -20,6 +24,50 @@ import news2 from "@/assets/news2.jpg";
 import news3 from "@/assets/news3.jpg";
 
 const Index = () => {
+  // Academy carousel
+  const [academyRef, academyApi] = useEmblaCarousel(
+    { loop: true, align: "start", slidesToScroll: 1 },
+    [Autoplay({ delay: 4000, stopOnInteraction: false })]
+  );
+  const [academyIndex, setAcademyIndex] = useState(0);
+  const [academyCount, setAcademyCount] = useState(0);
+
+  // News carousel
+  const [newsRef, newsApi] = useEmblaCarousel(
+    { loop: true, align: "start", slidesToScroll: 1 },
+    [Autoplay({ delay: 4000, stopOnInteraction: false })]
+  );
+  const [newsIndex, setNewsIndex] = useState(0);
+  const [newsCount, setNewsCount] = useState(0);
+
+  const onAcademySelect = useCallback(() => {
+    if (!academyApi) return;
+    setAcademyIndex(academyApi.selectedScrollSnap());
+    setAcademyCount(academyApi.scrollSnapList().length);
+  }, [academyApi]);
+
+  const onNewsSelect = useCallback(() => {
+    if (!newsApi) return;
+    setNewsIndex(newsApi.selectedScrollSnap());
+    setNewsCount(newsApi.scrollSnapList().length);
+  }, [newsApi]);
+
+  useEffect(() => {
+    if (!academyApi) return;
+    onAcademySelect();
+    academyApi.on("select", onAcademySelect);
+    academyApi.on("reInit", onAcademySelect);
+    return () => { academyApi.off("select", onAcademySelect); };
+  }, [academyApi, onAcademySelect]);
+
+  useEffect(() => {
+    if (!newsApi) return;
+    onNewsSelect();
+    newsApi.on("select", onNewsSelect);
+    newsApi.on("reInit", onNewsSelect);
+    return () => { newsApi.off("select", onNewsSelect); };
+  }, [newsApi, onNewsSelect]);
+
   return (
     <div>
       {/* Hero Section */}
@@ -331,80 +379,81 @@ const Index = () => {
             </p>
           </div>
 
-          {/* Course Cards - Horizontal scroll */}
-          <div className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide">
-            {[
-              {
-                img: academyCourse1,
-                badge: "Accredited Certificate",
-                date: "August 5-7, 2023",
-                title: "Advanced course in dental implants",
-                desc: "A specialized practical course in the latest dental implant techniques and integrated solutions.",
-              },
-              {
-                img: academyCourse2,
-                badge: "Scientific conference",
-                date: "August 5-7, 2023",
-                title: "Advanced cosmetic and smile techniques",
-                desc: "The latest methods and techniques in cosmetic dentistry and designing the perfect smile.",
-              },
-              {
-                img: academyCourse3,
-                badge: "Workshop",
-                date: "August 5-7, 2023",
-                title: "Digital dentistry masterclass",
-                desc: "Practical training on digital scanning, CAD/CAM and modern dental technologies.",
-              },
-            ].map((course, i) => (
-              <div key={i} className="bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow min-w-[340px] sm:min-w-[380px] flex-shrink-0 snap-start">
-                <img src={course.img} alt={course.title} className="w-full h-[200px] object-cover" />
-                <div className="p-5">
-                  {/* Badge & date */}
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="flex items-center gap-1.5 text-primary text-xs font-medium">
-                      <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                      </span>
-                      {course.badge}
-                    </span>
-                    <span className="text-primary text-xs font-medium">{course.date}</span>
-                  </div>
-                  <h4 className="font-bold text-foreground mb-2">{course.title}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed mb-4">{course.desc}</p>
-                  {/* Avatars + View course */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="flex -space-x-2">
-                        {[0, 1, 2].map(a => (
-                          <div key={a} className="w-7 h-7 rounded-full bg-muted border-2 border-card" />
-                        ))}
+          {/* Course Cards - Embla Carousel */}
+          <div className="overflow-hidden" ref={academyRef}>
+            <div className="flex -ml-6">
+              {[
+                {
+                  img: academyCourse1,
+                  badge: "Accredited Certificate",
+                  date: "August 5-7, 2023",
+                  title: "Advanced course in dental implants",
+                  desc: "A specialized practical course in the latest dental implant techniques and integrated solutions.",
+                },
+                {
+                  img: academyCourse2,
+                  badge: "Scientific conference",
+                  date: "August 5-7, 2023",
+                  title: "Advanced cosmetic and smile techniques",
+                  desc: "The latest methods and techniques in cosmetic dentistry and designing the perfect smile.",
+                },
+                {
+                  img: academyCourse3,
+                  badge: "Workshop",
+                  date: "August 5-7, 2023",
+                  title: "Digital dentistry masterclass",
+                  desc: "Practical training on digital scanning, CAD/CAM and modern dental technologies.",
+                },
+              ].map((course, i) => (
+                <div key={i} className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-6">
+                  <div className="bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <img src={course.img} alt={course.title} className="w-full h-[200px] object-cover" />
+                    <div className="p-5">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="flex items-center gap-1.5 text-primary text-xs font-medium">
+                          <span className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          </span>
+                          {course.badge}
+                        </span>
+                        <span className="text-primary text-xs font-medium">{course.date}</span>
                       </div>
-                      <span className="ml-1 text-[10px] bg-primary text-primary-foreground rounded-full px-1.5 py-0.5 font-bold">+100</span>
+                      <h4 className="font-bold text-foreground mb-2">{course.title}</h4>
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-4">{course.desc}</p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <div className="flex -space-x-2">
+                            {[0, 1, 2].map(a => (
+                              <div key={a} className="w-7 h-7 rounded-full bg-muted border-2 border-card" />
+                            ))}
+                          </div>
+                          <span className="ml-1 text-[10px] bg-primary text-primary-foreground rounded-full px-1.5 py-0.5 font-bold">+100</span>
+                        </div>
+                        <Button size="sm" variant="outline" className="rounded-full text-xs h-8 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                          View course
+                        </Button>
+                      </div>
                     </div>
-                    <Button size="sm" variant="outline" className="rounded-full text-xs h-8 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                      View course
-                    </Button>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Navigation & View all */}
           <div className="flex items-center justify-between mt-8">
             <div className="flex items-center gap-2">
-              <button className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors">
-                ‹
+              <button onClick={() => academyApi?.scrollPrev()} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors">
+                <ChevronLeft className="h-5 w-5" />
               </button>
-              <button className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors">
-                ›
+              <button onClick={() => academyApi?.scrollNext()} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors">
+                <ChevronRight className="h-5 w-5" />
               </button>
             </div>
-            {/* Progress dots */}
             <div className="flex items-center gap-1.5">
-              <div className="w-8 h-1 rounded-full bg-primary" />
-              <div className="w-2 h-1 rounded-full bg-border" />
-              <div className="w-2 h-1 rounded-full bg-border" />
+              {Array.from({ length: academyCount }).map((_, i) => (
+                <button key={i} onClick={() => academyApi?.scrollTo(i)} className={`h-1 rounded-full transition-all ${i === academyIndex ? "w-8 bg-primary" : "w-2 bg-border"}`} />
+              ))}
             </div>
             <a href="#" className="text-primary text-sm font-medium underline underline-offset-4 hover:no-underline">
               View all courses
@@ -501,42 +550,46 @@ const Index = () => {
             </p>
           </div>
 
-          {/* News Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            {[
-              { img: news1, title: "Medex sponsors the scientific conference on dental implants", desc: "Medix participated as a platinum sponsor in the International Dental Implant Conference held in Dubai last week." },
-              { img: news2, title: "Medex sponsors the scientific conference on dental implants", desc: "Medix participated as a platinum sponsor in the International Dental Implant Conference held in Dubai last week." },
-              { img: news3, title: "Medex sponsors the scientific conference on dental implants", desc: "Medix participated as a platinum sponsor in the International Dental Implant Conference held in Dubai last week." },
-            ].map((news, i) => (
-              <div key={i} className="bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <img src={news.img} alt={news.title} className="w-full h-[200px] object-cover" />
-                <div className="p-5">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-primary text-xs font-medium">News</span>
-                    <span className="text-primary text-xs font-medium">August 5-7, 2023</span>
+          {/* News Cards - Embla Carousel */}
+          <div className="overflow-hidden" ref={newsRef}>
+            <div className="flex -ml-6">
+              {[
+                { img: news1, title: "Medex sponsors the scientific conference on dental implants", desc: "Medix participated as a platinum sponsor in the International Dental Implant Conference held in Dubai last week." },
+                { img: news2, title: "Medex sponsors the scientific conference on dental implants", desc: "Medix participated as a platinum sponsor in the International Dental Implant Conference held in Dubai last week." },
+                { img: news3, title: "Medex sponsors the scientific conference on dental implants", desc: "Medix participated as a platinum sponsor in the International Dental Implant Conference held in Dubai last week." },
+              ].map((news, i) => (
+                <div key={i} className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-6">
+                  <div className="bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <img src={news.img} alt={news.title} className="w-full h-[200px] object-cover" />
+                    <div className="p-5">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-primary text-xs font-medium">News</span>
+                        <span className="text-primary text-xs font-medium">August 5-7, 2023</span>
+                      </div>
+                      <h4 className="font-bold text-foreground text-sm mb-2">{news.title}</h4>
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-4">{news.desc}</p>
+                      <a href="#" className="text-primary text-xs font-medium hover:underline">Read More...</a>
+                    </div>
                   </div>
-                  <h4 className="font-bold text-foreground text-sm mb-2">{news.title}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed mb-4">{news.desc}</p>
-                  <a href="#" className="text-primary text-xs font-medium hover:underline">Read More...</a>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Navigation & View all */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mt-8">
             <div className="flex items-center gap-2">
-              <button className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors">
-                ‹
+              <button onClick={() => newsApi?.scrollPrev()} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors">
+                <ChevronLeft className="h-5 w-5" />
               </button>
-              <button className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors">
-                ›
+              <button onClick={() => newsApi?.scrollNext()} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-colors">
+                <ChevronRight className="h-5 w-5" />
               </button>
             </div>
             <div className="flex items-center gap-1.5">
-              <div className="w-8 h-1 rounded-full bg-primary" />
-              <div className="w-2 h-1 rounded-full bg-border" />
-              <div className="w-2 h-1 rounded-full bg-border" />
+              {Array.from({ length: newsCount }).map((_, i) => (
+                <button key={i} onClick={() => newsApi?.scrollTo(i)} className={`h-1 rounded-full transition-all ${i === newsIndex ? "w-8 bg-primary" : "w-2 bg-border"}`} />
+              ))}
             </div>
             <a href="#" className="text-primary text-sm font-medium hover:underline">
               View all news and events
