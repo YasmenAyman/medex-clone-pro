@@ -1,17 +1,32 @@
 import HeroBanner from "@/components/HeroBanner";
-import SectionTitle from "@/components/SectionTitle";
 import PartnersGrid from "@/components/PartnersGrid";
+import aboutHero from "@/assets/about-hero.png";
+import aboutValue1 from "@/assets/about-value1.png";
+import valuesBox from "@/assets/values-box.png";
+import teamPhoto from "@/assets/team-photo.png";
 
 const values = [
-  "Supporting the continuing professional development of medical personnel",
-  "Commitment to the highest international quality standards",
-  "Honesty and transparency in all our dealings",
-  "Continuous innovation in providing medical solutions",
+  {
+    text: "Supporting the continuing professional development of medical personnel",
+    img: aboutValue1,
+  },
+  {
+    text: "Commitment to the highest international quality standards",
+    img: aboutValue1,
+  },
+  {
+    text: "Honesty and transparency in all our dealings",
+    img: aboutHero,
+  },
+  {
+    text: "Continuous innovation in providing medical solutions",
+    img: aboutValue1,
+  },
 ];
 
 const About = () => (
   <div>
-    <HeroBanner title="About Us" />
+    <HeroBanner title="About Us" backgroundImage={teamPhoto} />
 
     {/* Large typography headline */}
     <section className="py-20 container text-center">
@@ -32,19 +47,17 @@ const About = () => (
 
     {/* Full-width image */}
     <section className="container mb-20">
-      <div className="rounded-2xl bg-muted h-[300px] lg:h-[450px] overflow-hidden" />
+      <div className="rounded-2xl h-[300px] lg:h-[450px] overflow-hidden">
+        <img src={aboutHero} alt="Dental clinic" className="w-full h-full object-cover rounded-2xl" />
+      </div>
     </section>
 
     {/* Our Values */}
     <section className="py-20 bg-secondary">
       <div className="container">
         <div className="flex flex-col lg:flex-row gap-12">
-          <div className="lg:w-1/4">
-            <SectionTitle title="Our values" />
-            {/* Decorative Medex logo */}
-            <div className="opacity-10">
-              <MedexLogoLarge />
-            </div>
+          <div className="lg:w-1/4 flex-shrink-0">
+            <img src={valuesBox} alt="Our values" className="w-full max-w-[280px]" />
           </div>
           <div className="lg:w-3/4 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {values.map((val, i) => (
@@ -53,9 +66,11 @@ const About = () => (
                   <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div className="w-20 h-20 rounded-xl bg-muted" />
+                  <div className="w-20 h-20 rounded-xl overflow-hidden">
+                    <img src={val.img} alt="" className="w-full h-full object-cover" />
+                  </div>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed mt-4">{val}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed mt-4">{val.text}</p>
               </div>
             ))}
           </div>
@@ -66,14 +81,6 @@ const About = () => (
     {/* Business Partners */}
     <PartnersGrid />
   </div>
-);
-
-const MedexLogoLarge = () => (
-  <svg viewBox="0 0 80 80" className="w-24 h-24" fill="none">
-    <path d="M10 20C10 20 20 50 30 65C40 50 50 20 50 20" stroke="hsl(0, 72%, 51%)" strokeWidth="4" strokeLinecap="round" fill="none"/>
-    <path d="M30 20C30 20 40 50 50 65C60 50 70 20 70 20" stroke="hsl(0, 72%, 51%)" strokeWidth="4" strokeLinecap="round" fill="none"/>
-    <circle cx="40" cy="25" r="6" fill="hsl(0, 72%, 51%)"/>
-  </svg>
 );
 
 export default About;
