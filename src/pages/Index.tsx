@@ -71,22 +71,14 @@ const Index = () => {
         <div className="container">
           <div className="relative flex flex-col items-center">
             {/* Concentric circles */}
-            <div className="relative w-[320px] h-[320px] sm:w-[450px] sm:h-[450px] lg:w-[600px] lg:h-[600px]">
-              {/* Outer ring */}
-              <div className="absolute inset-0 rounded-full border border-primary/10" />
-              {/* Middle ring */}
-              <div className="absolute inset-[10%] rounded-full border border-primary/15" />
-              {/* Inner ring */}
-              <div className="absolute inset-[20%] rounded-full border border-primary/20" />
-              {/* Red filled circle */}
-              <div className="absolute inset-[28%] rounded-full bg-primary/80" />
+            <div className="relative w-full">
 
               {/* Dental implant image */}
-              <div className="absolute inset-0 flex items-center justify-center z-10">
+              <div className="flex items-center justify-center z-10">
                 <img
                   src={dentalImplant}
                   alt="Dental Implant"
-                  className="w-[160px] sm:w-[220px] lg:w-[300px] h-auto object-contain -mt-8"
+                  className="w-full h-auto object-contain -mt-8"
                 />
               </div>
 
