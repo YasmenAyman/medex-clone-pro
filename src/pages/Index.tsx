@@ -501,32 +501,48 @@ const Index = () => {
             {/* Right side - Box with floating cards */}
             <div className="relative flex justify-center">
               <img src={medexBox} alt="Medex Box" className="w-[380px] lg:w-[450px] h-auto mt-24" />
-              {/* Floating testimonial cards */}
-              {[
-                { top: "-top-4 right-0 lg:right-4", delay: "" },
-                { top: "top-20 -right-4 lg:right-0", delay: "" },
-                { top: "top-44 right-8 lg:right-12", delay: "" },
-              ].map((pos, i) => (
-                <div key={i} className={`absolute ${pos.top} bg-card rounded-xl p-4 shadow-lg border max-w-[280px] z-10`}>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-muted" />
-                      <div>
-                        <p className="font-semibold text-xs">Dr. Muhammad Al-Ahmad</p>
-                        <p className="text-[10px] text-muted-foreground">Consultant in Oral and Dental Surgery</p>
+              {/* Vertical auto-scrolling testimonial cards */}
+              <div className="absolute -top-4 right-0 lg:right-4 z-10 h-[280px] overflow-hidden max-w-[300px]">
+                <div className="flex flex-col gap-3 animate-testimonial-scroll">
+                  {[...Array(2)].flatMap((_, dupeIdx) =>
+                    [
+                      {
+                        name: "Dr. Muhammad Al-Ahmad",
+                        role: "Consultant in Oral and Dental Surgery",
+                        text: '"I have been dealing with Medex for over 10 years, and I have complete confidence in the quality of their products and services"',
+                      },
+                      {
+                        name: "Dr. Muhammad Al-Ahmad",
+                        role: "Consultant in Oral and Dental Surgery",
+                        text: '"I have been dealing with Medex for over 10 years, and I have complete confidence in the quality of their products and services"',
+                      },
+                      {
+                        name: "Dr. Muhammad Al-Ahmad",
+                        role: "Consultant in Oral and Dental Surgery",
+                        text: '"I have been dealing with Medex for over 10 years, and I have complete confidence in the quality of their products and services"',
+                      },
+                    ].map((t, i) => (
+                      <div key={`${dupeIdx}-${i}`} className="bg-card rounded-xl p-4 shadow-lg border">
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-full bg-muted" />
+                            <div>
+                              <p className="font-semibold text-xs">{t.name}</p>
+                              <p className="text-[10px] text-muted-foreground">{t.role}</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-0.5">
+                            {[1, 2, 3, 4, 5].map((s) => (
+                              <span key={s} className="text-amber-400 text-[10px]">★</span>
+                            ))}
+                          </div>
+                        </div>
+                        <p className="text-[11px] text-muted-foreground leading-relaxed">{t.text}</p>
                       </div>
-                    </div>
-                    <div className="flex gap-0.5">
-                      {[1, 2, 3, 4, 5].map((s) => (
-                        <span key={s} className="text-amber-400 text-[10px]">★</span>
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-[11px] text-muted-foreground leading-relaxed">
-                    "I have been dealing with Medex for over 10 years, and I have complete confidence in the quality of their products and services"
-                  </p>
+                    ))
+                  )}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
