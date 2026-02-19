@@ -20,18 +20,15 @@ const dots = [
 
 const WorldMap = () => (
   <div className="relative w-full flex flex-col items-end">
-    <p className="text-muted-foreground text-sm mb-6 max-w-[300px] text-right">
-      We are here to answer your questions and provide the necessary assistance.
-    </p>
     <div className="relative w-full">
       <img src={worldMap} alt="World map" className="w-full opacity-90" />
-      {dots.map((d, i) => (
+      {/* {dots.map((d, i) => (
         <div
           key={i}
           className="absolute w-2.5 h-2.5 rounded-full bg-primary"
           style={{ left: `${d.x}%`, top: `${d.y}%`, transform: "translate(-50%, -50%)" }}
         />
-      ))}
+      ))} */}
     </div>
   </div>
 );

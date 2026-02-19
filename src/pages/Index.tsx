@@ -14,14 +14,24 @@ import academyCourse2 from "@/assets/academy-course2.jpg";
 import academyCourse3 from "@/assets/academy-course3.jpg";
 import dentalImplant from "@/assets/dental-implant.png";
 import toothVideo from "@/assets/tooth-video.mp4";
+import toothimg from "@/assets/toothimg.png";
+import icon1 from "@/assets/icon1.png";
+import icon2 from "@/assets/icon2.png";
+import icon3 from "@/assets/icon3.png";
+import icon4 from "@/assets/icon4.png";
 import serviceStore from "@/assets/service-store.jpg";
 import serviceAcademy from "@/assets/service-academy.jpg";
 import serviceDental from "@/assets/service-dental.jpg";
-import productsHero from "@/assets/products-hero.jpg";
+import productsHero from "@/assets/products-hero.png";
+import tab_icon1 from "@/assets/tab_icon1.png";
+import tab_icon2 from "@/assets/tab_icon2.png";
+import tab_icon3 from "@/assets/tab_icon3.png";
+import tab_icon4 from "@/assets/tab_icon4.png";
 import medexBox from "@/assets/medex-box.png";
 import news1 from "@/assets/news1.jpg";
 import news2 from "@/assets/news2.jpg";
 import news3 from "@/assets/news3.jpg";
+import pushpin from "@/assets/pushpin.png";
 
 const Index = () => {
   // Academy carousel
@@ -39,6 +49,36 @@ const Index = () => {
   );
   const [newsIndex, setNewsIndex] = useState(0);
   const [newsCount, setNewsCount] = useState(0);
+
+  // Products state
+  const [activeProduct, setActiveProduct] = useState(0);
+
+  const productCategories = [
+    {
+      title: "Advanced dental implants",
+      desc: "Made from high quality titanium to ensure the highest success rates and longevity",
+      img: productsHero,
+      icon: tab_icon1,
+    },
+    {
+      title: "CAD/CAM systems",
+      desc: "Advanced digital technologies for designing and manufacturing dental implants with high accuracy",
+      img: serviceAcademy,
+      icon: tab_icon2,
+    },
+    {
+      title: "Specialized laser devices",
+      desc: "Specialized laser devices for delicate treatments and cosmetic procedures. Advanced",
+      img: serviceDental,
+      icon: tab_icon3,
+    },
+    {
+      title: "Advanced filling materials",
+      desc: "High-quality restorative materials providing excellent aesthetics and durability for dental fillings",
+      img: serviceStore,
+      icon: tab_icon4,
+    }
+  ];
 
   const onAcademySelect = useCallback(() => {
     if (!academyApi) return;
@@ -76,46 +116,53 @@ const Index = () => {
       {/* Team Photo */}
       <section className="container mt-20">
         <div className="rounded-2xl overflow-hidden">
-          <img src={teamPhoto} alt="Medex Team" className="w-full h-[300px] lg:h-[450px] object-cover object-top" />
+          <img src={teamPhoto} alt="Medex Team" className="w-full h-[300px] lg:h-[450px] object-cover object-top" style={{ boxShadow: "0px 0px 20px rgba(218, 103, 103, 0.25)" }} />
         </div>
       </section>
 
       {/* Who Medex Is + Vision */}
-      <section className="py-16 container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <section className="py-24 container">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-16 items-center">
           {/* Tooth 3D video */}
-          <div className="flex items-center justify-center">
-            <video
+          <div className="flex items-center justify-center lg:justify-start">
+            {/* <video
               src={toothVideo}
               autoPlay
               loop
               muted
               playsInline
-              className="w-[280px] lg:w-[320px] h-auto"
-            />
+              className="w-[280px] lg:w-[400px] h-auto opacity-80"
+              style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }}
+            /> */}
+            <img src={toothimg} alt="Tooth" className="opacity-80" />
           </div>
           {/* Text content */}
-          <div>
-            <h3 className="text-xl font-bold text-foreground mb-1">
-              Who <span className="text-primary">Medex</span> is?
-            </h3>
-            <p className="text-muted-foreground leading-relaxed mb-6 text-sm">
-              Medex Company is a leading company in the field of distributing medical supplies
-              and dental implants in the Middle East. It was established with the aim of providing
-              the latest international technologies to medical centers and dental clinics.
-            </p>
-            <h3 className="text-lg font-bold text-foreground mb-2">Our vision</h3>
-            <p className="text-muted-foreground leading-relaxed text-sm">
-              To be the ideal partner for medical institutions in the field of dental implants and
-              specialized medical equipment, by providing integrated solutions of international
-              quality.
-            </p>
+          <div className="space-y-10 lg:col-span-3">
+            <div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+                Who <span className="text-[#F80000]">Medex</span> is?
+              </h3>
+              <p className="text-muted-foreground leading-relaxed text-base sm:text-lg lg:text-xl font-light">
+                Medex Company is a leading company in the field of distributing medical supplies
+                and dental implants in the Middle East. It was established with the aim of providing
+                the latest international technologies to medical centers and dental clinics.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold text-muted-foreground/70 mb-4">Our vision</h3>
+              <p className="text-muted-foreground leading-relaxed text-base sm:text-lg lg:text-xl font-light">
+                To be the ideal partner for medical institutions in the field of dental implants and
+                specialized medical equipment, by providing integrated solutions of international
+                quality.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Our Values - Circular design */}
-      <section className="py-20 bg-background">
+      <section className="py-10 bg-background">
         <div className="container">
           <div className="relative flex flex-col items-center">
             {/* Concentric circles */}
@@ -131,34 +178,38 @@ const Index = () => {
               </div>
 
               {/* "Our values" text */}
-              <div className="absolute bottom-[18%] left-1/2 -translate-x-1/2 z-10 text-center">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-foreground leading-tight">
+              <div className="absolute bottom-[20%] left-[35%] -translate-x-1/2 z-10">
+                <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-primary-foreground leading-tight">
                   Our<br />values
                 </h2>
               </div>
 
               {/* Value labels positioned around the circle */}
               {/* Top-right */}
-              <div className="absolute -top-4 right-0 lg:-right-16 max-w-[180px] text-right">
-                <p className="text-xs sm:text-sm text-muted-foreground italic leading-snug">
+              <div className="absolute top-[18%] right-[5%] lg:right-[2%] max-w-[250px] text-right">
+                <img src={icon1} alt="icon1" className="w-6 h-6" />
+                <p className="text-xs sm:text-sm text-muted-foreground text-left leading-snug">
                   Supporting the continuing professional development of medical personnel
                 </p>
               </div>
               {/* Top-left */}
-              <div className="absolute top-[20%] -left-4 lg:-left-20 max-w-[180px] text-left">
-                <p className="text-xs sm:text-sm text-muted-foreground italic leading-snug">
+              <div className="absolute top-[20%] left-[5%] lg:left-[19%] max-w-[180px] text-left">
+                <img src={icon2} alt="icon2" className="w-6 h-6" />
+                <p className="text-xs sm:text-sm text-muted-foreground text-left leading-snug">
                   Honesty and transparency in all our dealings
                 </p>
               </div>
               {/* Bottom-left */}
-              <div className="absolute bottom-[5%] -left-4 lg:-left-20 max-w-[180px] text-left">
-                <p className="text-xs sm:text-sm text-muted-foreground italic leading-snug">
+              <div className="absolute top-[60%] left-[5%] lg:left-[4%] max-w-[180px] text-left">
+                <img src={icon3} alt="icon3" className="w-6 h-6" style={{ marginLeft: "auto" }} />
+                <p className="text-xs sm:text-sm text-muted-foreground text-left leading-snug">
                   Continuous innovation in providing medical solutions
                 </p>
               </div>
               {/* Bottom-right */}
-              <div className="absolute bottom-[5%] right-0 lg:-right-16 max-w-[180px] text-right">
-                <p className="text-xs sm:text-sm text-muted-foreground italic leading-snug">
+              <div className="absolute top-[60%] right-[5%] lg:right-[2%] max-w-[200px] text-right">
+                <img src={icon4} alt="icon4" className="w-6 h-6" />
+                <p className="text-xs sm:text-sm text-muted-foreground text-left leading-snug">
                   Commitment to the highest international quality standards
                 </p>
               </div>
@@ -168,19 +219,19 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-secondary/50">
-        <div className="container">
+      <section className="py-10">
+        <div className="container bg-card rounded-3xl shadow-card p-8 lg:p-12" style={{ boxShadow: "0px 0px 20px 0px #DA676740" }}>
           {/* Header */}
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-12">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-8">
             <div>
               <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
                 Medex
               </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
+              <h2 className="text-2xl sm:text-3xl font-medium text-foreground leading-tight">
                 Explore our<br />different services
               </h2>
             </div>
-            <p className="text-muted-foreground mt-4 lg:mt-8 max-w-sm text-sm leading-relaxed">
+            <p className="text-muted-foreground mt-4 lg:mt-8 max-w-sm text-md leading-relaxed">
               We offer you a comprehensive package of specialized medical services and products
             </p>
           </div>
@@ -207,44 +258,121 @@ const Index = () => {
                 img: serviceDental,
               },
             ].map((s, i) => (
-              <div key={i} className="bg-card rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
-                <div className="relative mb-4">
-                  <span className="absolute top-3 left-3 z-10 bg-primary text-primary-foreground text-xs font-bold w-8 h-8 rounded-full flex items-center justify-center">
-                    {s.num}
-                  </span>
-                  <img src={s.img} alt={s.title} className="w-full h-[180px] object-cover rounded-xl" />
+              <div
+                key={i}
+                className="bg-white p-6 sm:p-8 transition-shadow relative overflow-hidden group"
+                style={{
+                  boxShadow: "0px 0px 12px rgba(218, 103, 103, 0.2)",
+                  borderRadius: "16px"
+                }}
+              >
+                {/* Background Grid Pattern (Subtle) */}
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(#DA6767 0.5px, transparent 0.5px)", backgroundSize: "20px 20px" }} />
+
+                <div className="relative z-10">
+                  <div className="flex justify-between items-start mb-8">
+                    <div className="w-10 h-10 rounded-full bg-[#DA6767] flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-[#DA6767]/20">
+                      {s.num}
+                    </div>
+                    <div className="w-32 h-32 sm:w-40 sm:h-40 overflow-hidden rounded-3xl shadow-md">
+                      <img src={s.img} alt={s.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3">{s.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{s.desc}</p>
                 </div>
-                <h3 className="font-bold text-foreground mb-2">{s.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
 
           {/* Bottom stats */}
-          <div className="flex flex-wrap items-center gap-8 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <span className="text-primary text-lg">★</span>
+          <div className="flex flex-wrap items-center gap-10 text-sm sm:text-base font-medium text-muted-foreground">
+            <div className="flex items-center gap-3">
+              <i className="fa-solid fa-star text-[#F80000] text-lg"></i>
               <span>4.9 on Google reviews</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="w-2 h-2 rounded-full bg-primary" />
-              </span>
+            <div className="flex items-center gap-3">
+              <i className="fa-solid fa-face-smile text-[#F80000] text-lg"></i>
               <span>400+ Happy clients</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-primary text-lg">♥</span>
+            <div className="flex items-center gap-3">
+              <i className="fa-solid fa-shield-halved text-[#F80000] text-lg"></i>
               <span>Safe & Certified care</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Our Services Section - Zigzag cards */}
-      <section className="py-20 bg-background relative overflow-hidden">
+      {/* Products Section */}
+      <section className="py-10">
         <div className="container">
           {/* Header */}
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-16">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-10">
+            <div>
+              <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
+                Medex
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground leading-tight">
+                Our medical products<br />are suit everyone
+              </h2>
+            </div>
+            <p className="text-muted-foreground mt-4 lg:mt-8 max-w-xs text-md leading-relaxed">
+              A wide range of high-quality medical products are suit everyone
+            </p>
+          </div>
+
+          {/* Product Categories */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {productCategories.map((p, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveProduct(i)}
+                className="flex flex-col text-left group outline-none focus:outline-none"
+              >
+                <div className={`flex items-center gap-3 mb-4 transition-all duration-300 relative pb-2 ${activeProduct === i ? "text-[#F80000]" : "text-[#B0B0B0] hover:text-foreground/80"
+                  }`}>
+                  <div className={`transition-transform duration-300 ${activeProduct === i ? "scale-110" : "scale-100 opacity-60"}`}>
+                    <img src={p.icon} alt={p.title} className="w-10 h-10 object-contain" />
+                  </div>
+                  <span className={`text-sm lg:text-base font-bold transition-colors ${activeProduct === i ? "text-[#F80000]" : "text-[#B0B0B0]"}`}>
+                    {p.title}
+                  </span>
+                  {activeProduct === i && (
+                    <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#F80000] rounded-full" />
+                  )}
+                </div>
+                <p className={`text-xs lg:text-sm leading-relaxed transition-colors duration-300 ${activeProduct === i ? "text-[#4A4A4A]" : "text-[#B0B0B0]"
+                  }`}>
+                  {p.desc}
+                </p>
+              </button>
+            ))}
+          </div>
+
+          {/* Product Image */}
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl transition-all duration-700 transform">
+            <img
+              src={productCategories[activeProduct].img}
+              alt={productCategories[activeProduct].title}
+              className="w-full h-[350px] lg:h-[550px] object-cover animate-in fade-in zoom-in-95 duration-700"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Our Services Section - Zigzag cards */}
+      <section className="py-20 bg-background relative overflow-hidden">
+        {/* Dot grid background */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-40"
+          style={{
+            backgroundImage: "radial-gradient(circle, #e0e0e0 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <div className="container relative z-10">
+          {/* Header */}
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16">
             <div>
               <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
                 Medex
@@ -265,7 +393,7 @@ const Index = () => {
               <path
                 d="M 200 60 C 350 100, 450 150, 550 200 C 400 280, 300 320, 200 400 C 350 480, 450 500, 550 540 C 400 620, 300 660, 200 720 C 350 800, 450 840, 550 900"
                 fill="none"
-                stroke="hsl(0 0% 85%)"
+                stroke="hsl(0 0% 80%)"
                 strokeWidth="1.5"
                 strokeDasharray="8 6"
               />
@@ -274,23 +402,77 @@ const Index = () => {
             {/* Cards */}
             <div className="relative z-10 space-y-8 lg:space-y-10">
               {[
-                { title: "Supply and distribution", desc: "Supply and distribution services for medical equipment, dental materials, and all medical products with speed and high efficiency.", icon: "📦", align: "left" as const },
-                { title: "Maintenance and Technical Support", desc: "Regular and emergency maintenance services for all types of medical equipment and dental devices, with the provision of original spare parts, repair...", icon: "🔧", align: "right" as const },
-                { title: "Clinic equipment", desc: "Design and equipping services for dental clinics and medical centers with the latest technologies and design of medical environments.", icon: "🏥", align: "left" as const },
-                { title: "Training and qualification", desc: "Training courses and workshops for dentists on the latest treatment technologies, equipment and the use of modern medical devices.", icon: "🎓", align: "right" as const },
-                { title: "Technical consultations", desc: "Expert technical consulting services in the field of dental materials, equipment selection and selection of appropriate materials.", icon: "💡", align: "left" as const },
-                { title: "Guarantee programs", desc: "Inclusive warranty programs for equipment and medical devices to ensure continuity.", icon: "🛡️", align: "right" as const },
+                {
+                  title: "Supply and distribution",
+                  desc: "Supply and distribution services for medical equipment, dental materials, and all medical products with speed and high efficiency.",
+                  icon: (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-5 h-5 text-primary">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                  ),
+                  align: "left" as const,
+                },
+                {
+                  title: "Maintenance and Technical Support",
+                  desc: "Regular and emergency maintenance services for all types of medical equipment and dental devices, with the provision of original spare parts, repair...",
+                  icon: (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-5 h-5 text-primary">
+                      <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+                    </svg>
+                  ),
+                  align: "right" as const,
+                },
+                {
+                  title: "Clinic equipment",
+                  desc: "Design and equipping services for dental clinics and medical centers with the latest technologies and design of medical environments.",
+                  icon: (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-5 h-5 text-primary">
+                      <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 21V9" />
+                    </svg>
+                  ),
+                  align: "left" as const,
+                },
+                {
+                  title: "Training and qualification",
+                  desc: "Training courses and workshops for dentists on the latest treatment technologies, equipment and the use of modern medical devices.",
+                  icon: (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-5 h-5 text-primary">
+                      <path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" />
+                    </svg>
+                  ),
+                  align: "right" as const,
+                },
+                {
+                  title: "Technical consultations",
+                  desc: "Expert technical consulting services in the field of dental materials, equipment selection and selection of appropriate materials.",
+                  icon: (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-5 h-5 text-primary">
+                      <circle cx="12" cy="12" r="10" /><path d="M12 16v-4M12 8h.01" />
+                    </svg>
+                  ),
+                  align: "left" as const,
+                },
+                {
+                  title: "Guarantee programs",
+                  desc: "Inclusive warranty programs for equipment and medical devices to ensure continuity.",
+                  icon: (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-5 h-5 text-primary">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                  ),
+                  align: "right" as const,
+                },
               ].map((service, i) => (
                 <div key={i} className={`flex ${service.align === "right" ? "lg:justify-end justify-start" : "justify-start"}`}>
                   <div className="relative w-full max-w-[280px] sm:max-w-[300px]">
-                    {/* Red pushpin */}
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 w-8 h-8 rounded-full bg-primary shadow-md flex items-center justify-center">
-                      <div className="w-2.5 h-2.5 rounded-full bg-primary-foreground" />
+                    {/* Realistic SVG Pushpin */}
+                    <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 w-10 h-10 drop-shadow-lg">
+                      <img src={pushpin} alt="Pushpin" style={{ filter: "drop-shadow(0px 3.15655px 3.15655px rgba(225, 44, 55, 0.35))" }} />
                     </div>
                     {/* Card */}
-                    <div className="bg-primary/5 rounded-2xl p-5 pt-7 border border-primary/10">
+                    <div className="bg-white rounded-2xl p-5 pt-8 border border-primary/10 shadow-sm hover:shadow-md transition-shadow duration-300" style={{ boxShadow: "0px 0px 31.5655px rgba(225, 44, 55, 0.11)" }}>
                       <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                        <span className="text-sm">{service.icon}</span>
+                        {service.icon}
                       </div>
                       <h3 className="font-bold text-foreground text-sm mb-2">{service.title}</h3>
                       <p className="text-xs text-muted-foreground leading-relaxed">{service.desc}</p>
@@ -303,64 +485,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Products Section */}
-      <section className="py-20">
-        <div className="container">
-          {/* Header */}
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-10">
-            <div>
-              <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
-                Medex
-              </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
-                Our medical products<br />are suit everyone
-              </h2>
-            </div>
-            <p className="text-muted-foreground mt-4 lg:mt-8 max-w-xs text-sm leading-relaxed">
-              A wide range of high-quality medical products are suit everyone
-            </p>
-          </div>
-
-          {/* Product Categories */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-            {[
-              {
-                title: "Advanced dental implants",
-                desc: "Made from high quality titanium to ensure the highest success rates and longevity",
-                active: true,
-              },
-              {
-                title: "CAD/CAM systems",
-                desc: "Advanced digital technologies for designing and manufacturing dental implants with high accuracy",
-                active: false,
-              },
-              {
-                title: "Specialized laser devices",
-                desc: "Specialized laser devices for delicate treatments and cosmetic procedures. Advanced",
-                active: false,
-              },
-              {
-                title: "Advanced filling materials",
-                desc: "Specialized laser devices for delicate treatments and cosmetic procedures. Advanced",
-                active: false,
-              },
-            ].map((p, i) => (
-              <div key={i} className="flex flex-col">
-                <div className={`flex items-center gap-2 mb-3 px-3 py-2 rounded-full text-sm font-medium ${p.active ? "bg-primary text-primary-foreground" : "text-foreground"}`}>
-                  {p.active && <span className="w-2 h-2 rounded-full bg-primary-foreground" />}
-                  {p.title}
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Product Image */}
-          <div className="rounded-2xl overflow-hidden">
-            <img src={productsHero} alt="Dental products" className="w-full h-[300px] lg:h-[450px] object-cover" />
-          </div>
-        </div>
-      </section>
 
       <section className="py-20 bg-secondary/50">
         <div className="container">
@@ -406,7 +530,7 @@ const Index = () => {
                 },
               ].map((course, i) => (
                 <div key={i} className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-6">
-                  <div className="bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <div className="bg-card rounded-2xl overflow-hidden shadow-card transition-shadow">
                     <img src={course.img} alt={course.title} className="w-full h-[200px] object-cover" />
                     <div className="p-5">
                       <div className="flex items-center justify-between mb-3">
@@ -465,10 +589,10 @@ const Index = () => {
       {/* Testimonials */}
       <section className="py-20">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
             {/* Left side */}
-            <div>
-              <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
+            <div className="flex flex-col">
+              <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4" style={{ width: "fit-content" }}>
                 Medex
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
@@ -496,14 +620,34 @@ const Index = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Download App Banner */}
+              <div className="w-full" style={{ marginTop: "auto" }}>
+                <div className="bg-white/60 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-primary/10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-card">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center flex-shrink-0">
+                      <img src="/src/assets/logo.png" alt="Logo" className="w-8 h-8 object-contain" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-foreground text-sm lg:text-base">Try Our Application with alot of features</h4>
+                      <p className="text-xs text-muted-foreground">Try Our Application available at app store & play store</p>
+                    </div>
+                  </div>
+                  <Button className="rounded-full bg-primary hover:bg-primary/90 text-white gap-3 px-8 h-12 font-bold shadow-lg shadow-primary/20 whitespace-nowrap">
+                    Download App
+                    <div className="flex items-center gap-1.5 border-l border-white/20 pl-3 ml-1">
+                      <ChevronRight className="h-4 w-4" />
+                    </div>
+                  </Button>
+                </div>
+              </div>
             </div>
 
             {/* Right side - Box with floating cards */}
-            <div className="relative flex justify-center">
-              <img src={medexBox} alt="Medex Box" className="w-[380px] lg:w-[450px] h-auto mt-24" />
+            <div className="relative flex justify-center min-h-[500px] w-full">
               {/* Vertical auto-scrolling testimonial cards */}
-              <div className="absolute -top-4 right-0 lg:right-4 z-10 h-[280px] overflow-hidden max-w-[300px]">
-                <div className="flex flex-col gap-3 animate-testimonial-scroll">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2  z-10 h-[450px] overflow-hidden w-full max-w-[350px]">
+                <div className="flex flex-col gap-4 animate-testimonial-scroll pt-10">
                   {[...Array(2)].flatMap((_, dupeIdx) =>
                     [
                       {
@@ -522,12 +666,18 @@ const Index = () => {
                         text: '"I have been dealing with Medex for over 10 years, and I have complete confidence in the quality of their products and services"',
                       },
                     ].map((t, i) => (
-                      <div key={`${dupeIdx}-${i}`} className="bg-card rounded-xl p-4 shadow-lg border">
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-muted" />
+                      <div
+                        key={`${dupeIdx}-${i}`}
+                        className={`bg-card rounded-2xl p-4 lg:p-6 shadow-card border border-primary/5 transition-transform duration-500 ${i === 1 ? "-translate-x-8 lg:-translate-x-16" : ""
+                          }`}
+                      >
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold overflow-hidden border border-primary/20">
+                              <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i + dupeIdx}`} alt="Doctor" className="w-full h-full object-cover" />
+                            </div>
                             <div>
-                              <p className="font-semibold text-xs">{t.name}</p>
+                              <p className="font-bold text-[13px] text-foreground">{t.name}</p>
                               <p className="text-[10px] text-muted-foreground">{t.role}</p>
                             </div>
                           </div>
@@ -537,24 +687,35 @@ const Index = () => {
                             ))}
                           </div>
                         </div>
-                        <p className="text-[11px] text-muted-foreground leading-relaxed">{t.text}</p>
+                        <p className="text-[11px] lg:text-[12px] text-muted-foreground leading-relaxed italic">{t.text}</p>
                       </div>
                     ))
                   )}
                 </div>
               </div>
+
+              {/* The Box - Positioned to cover the bottom part of cards */}
+              <div className="mt-[20rem] z-20 pointer-events-none w-full">
+                <img
+                  src={medexBox}
+                  alt="Medex Box"
+                  className="w-full h-auto object-contain"
+                  style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }}
+                />
+              </div>
             </div>
           </div>
+
         </div>
       </section>
 
       {/* News and Events */}
       <section className="py-20 bg-secondary/30">
-        <div className="container">
+        <div className="container bg-card rounded-3xl shadow-card p-8 lg:p-12" style={{ boxShadow: "0px 0px 20px 0px #DA676740" }}>
           {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-12">
             <div>
-              <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
+              <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4" style={{ width: "fit-content" }}>
                 Medex
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
@@ -575,7 +736,7 @@ const Index = () => {
                 { img: news3, title: "Medex sponsors the scientific conference on dental implants", desc: "Medix participated as a platinum sponsor in the International Dental Implant Conference held in Dubai last week." },
               ].map((news, i) => (
                 <div key={i} className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-6">
-                  <div className="bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <div className="bg-card rounded-2xl overflow-hidden shadow-card transition-shadow">
                     <img src={news.img} alt={news.title} className="w-full h-[200px] object-cover" />
                     <div className="p-5">
                       <div className="flex items-center justify-between mb-3">
@@ -618,19 +779,27 @@ const Index = () => {
       <PartnersGrid />
 
       {/* Join Our Community */}
-      <section className="py-20 bg-secondary">
+      <section className="py-20">
         <div className="container">
-          <div className="bg-card rounded-2xl shadow-sm p-8 lg:p-12">
-            <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
-              Medex
-            </span>
-            <h2 className="text-2xl font-bold mb-8">Join to Our Community</h2>
+          <div className="bg-card rounded-3xl shadow-card p-8 lg:p-12" style={{ boxShadow: "0px 0px 20px 0px #DA676740" }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+              <div>
+                <span className="inline-block px-4 py-1 rounded-full border border-primary text-primary text-sm font-medium mb-4">
+                  Medex
+                </span>
+                <h2 className="text-2xl font-bold mb-8">Join to Our Community</h2>
+              </div>
+              <div className="flex justify-end items-center">
+                <p className="text-muted-foreground mb-6 lg:mb-0 w-[500px] text-lg">
+                  We are here to answer your questions and provide the necessary assistance.
+                </p>
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <ContactForm />
               <div>
-                <p className="text-muted-foreground mb-6">
-                  We are here to answer your questions and provide the necessary assistance.
-                </p>
+
                 <WorldMap />
               </div>
             </div>

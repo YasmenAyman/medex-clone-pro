@@ -61,7 +61,7 @@ const About = () => (
           </div>
           <div className="lg:w-3/4 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {values.map((val, i) => (
-              <div key={i} className="bg-card rounded-2xl p-6 shadow-sm">
+              <div key={i} className="bg-card rounded-2xl p-6 shadow-card">
                 <div className="flex justify-between items-start mb-4">
                   <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
                     {String(i + 1).padStart(2, "0")}

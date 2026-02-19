@@ -8,11 +8,11 @@ import langIcon from "@/assets/language.png";
 const navLinks = [
   { label: "Home", path: "/" },
   { label: "About Us", path: "/about" },
-  { label: "Products", path: "/products" },
+  { label: "Products", path: "/category" },
   { label: "Services", path: "#" },
   { label: "Scientific Academy", path: "#" },
   { label: "News and events", path: "#" },
-  { label: "join us", path: "#" },
+  { label: "join us", path: "/contact" },
 ];
 
 const Navbar = () => {
@@ -31,18 +31,21 @@ const Navbar = () => {
 
           {/* Desktop nav - centered */}
           <nav className="hidden lg:flex items-center gap-4 xl:gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.path}
-                className={`text-[12px] xl:text-[13px] font-medium transition-colors hover:text-primary whitespace-nowrap ${pathname === link.path || (link.label === "Home" && pathname === "/")
-                  ? "text-primary font-bold"
-                  : "text-foreground/70"
-                  }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive =
+                pathname === link.path ||
+                (link.path === "/category" && (pathname.startsWith("/category") || pathname.endsWith("/products")));
+              return (
+                <Link
+                  key={link.label}
+                  to={link.path}
+                  className={`text-[12px] xl:text-[13px] font-medium transition-colors hover:text-primary whitespace-nowrap ${isActive ? "text-primary font-bold" : "text-foreground/70"
+                    }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-3">

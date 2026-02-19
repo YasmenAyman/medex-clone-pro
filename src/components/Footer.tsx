@@ -10,7 +10,7 @@ const quickLinks = [
   { label: "Services", path: "#" },
   { label: "Medex Academy", path: "#" },
   { label: "News and events", path: "#" },
-  { label: "Join US", path: "#" },
+  { label: "Join US", path: "/contact" },
 ];
 
 const productLinks = [
@@ -97,9 +97,9 @@ const Footer = () => (
             Subscribe to our newsletter to receive all the latest news about our products and exclusive offers.
           </p>
           <div className="relative flex items-center mb-6">
-            <Input 
-              placeholder="Email" 
-              className="pr-12 py-6 rounded-xl border-none shadow-sm focus-visible:ring-primary/20 bg-white" 
+            <Input
+              placeholder="Email"
+              className="pr-12 py-6 rounded-xl border-none shadow-sm focus-visible:ring-primary/20 bg-white"
             />
             <button className="absolute right-1 w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center hover:bg-primary/90 transition-colors">
               <Send className="h-4 w-4" />
@@ -133,14 +133,14 @@ const Footer = () => (
 // App Store Icon
 const AppleIcon = ({ className = "" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
   </svg>
 );
 
 // Play Store Icon
 const PlayIcon = ({ className = "" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M5,19.03V4.97c0-0.74,0.79-1.18,1.41-0.78l11.13,7.03c0.55,0.35,0.55,1.2,0,1.55L6.41,19.81C5.79,20.21,5,19.77,5,19.03z"/>
+    <path d="M5,19.03V4.97c0-0.74,0.79-1.18,1.41-0.78l11.13,7.03c0.55,0.35,0.55,1.2,0,1.55L6.41,19.81C5.79,20.21,5,19.77,5,19.03z" />
   </svg>
 );
 
